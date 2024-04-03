@@ -6,30 +6,30 @@ using namespace std;
 Card::Card(const string& n, int m, Type t, Rarity r) : name(n), mana(m), type(t), rarity(r) {}
 
 void Card::display() {
-    cout << "Карта: " << name << endl;
-    cout << "Мана: " << mana << endl;
-    cout << "Тип: ";
+    cout << "Card: " << name << endl;
+    cout << "Manna: " << mana << endl;
+    cout << "Type: ";
     switch (type) {
         case Type::SPELL:
-            cout << "Заклинання" << endl;
+            cout << "Spell" << endl;
             break;
         case Type::MINION:
-            cout << "Слуга" << endl;
+            cout << "Slave" << endl;
             break;
     }
-    cout << "Рідкість: ";
+    cout << "Rarity: ";
     switch (rarity) {
         case Rarity::COMMON:
-            cout << "Звичайна" << endl;
+            cout << "Common" << endl;
             break;
         case Rarity::RARE:
-            cout << "Рідка" << endl;
+            cout << "Rare" << endl;
             break;
         case Rarity::EPIC:
-            cout << "Епічна" << endl;
+            cout << "Epic" << endl;
             break;
         case Rarity::LEGENDARY:
-            cout << "Легендарна" << endl;
+            cout << "Legendary" << endl;
             break;
     }
 }

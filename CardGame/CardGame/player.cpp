@@ -12,13 +12,13 @@ void Player::discardCard() {
         Card discardedCard = deck.back();
         deck.pop_back();
         health -= discardedCard.mana;
-        cout << "Гравець викидає карту: " << discardedCard.name << endl;
+        cout << "Player throw a card: " << discardedCard.name << endl;
     }
 }
 
 void Player::displayDeck() {
-    cout << "Колода гравця:" << endl;
-    for (const auto& card : deck) {
+    cout << "Player deck:" << endl;
+    for (auto& card : deck) {
         card.display();
     }
 }

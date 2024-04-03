@@ -22,11 +22,11 @@ int main() {
 
     // Визначення переможця
     if (player.health <= 0 && opponent.health <= 0) {
-        cout << "Нічия!" << endl;
+        cout << "Draw!" << endl;
     } else if (player.health <= 0) {
-        cout << "Суперник переміг!" << endl;
+        cout << "Opponent won!" << endl;
     } else {
-        std::cout << "Гравець переміг!" << endl;
+        cout << "Player won!" << endl;
     }
 
     return 0;
