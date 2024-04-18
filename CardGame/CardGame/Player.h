@@ -3,18 +3,22 @@
 
 #include "card.h"
 #include <vector>
+#include "deck.h"
+#include "opponent.h"
 
 using namespace std;
 
 class Player {
 public:
-    vector<Card> deck;
+    vector<Card> playerDeck;
     int health;
+    int manaNow;
 
     Player();
-    void discardCard();
+    Card chooseCard(Player& pl);
+    void discardCard(Player& pl, Opponent& op, Card& chooseCard());
     void displayDeck();
-    void addCard(const string& name, int mana, Card::Type type, Card::Rarity rarity);
+    void addCardsFromDeck(Deck& mainDeck);
 };
 
 #endif

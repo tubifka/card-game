@@ -1,19 +1,23 @@
 #ifndef OPPONENT_H
 #define OPPONENT_H
 
-#include "card.h" // Підключаємо клас Card
-
+#include "card.h"
 #include <vector>
+#include "deck.h"
+#include "player.h"
 
 using namespace std;
 
 class Opponent {
 public:
-    vector<Card> deck; // Колода суперника
-    int health; // Здоров'я суперника
+    vector<Card> opponentDeck;
+    int health;
+    int manaNow;
 
     Opponent();
-    void discardCard();
+    Card chooseCard(Opponent& op);
+    void discardCard(Player& pl, Opponent& op, Card& chooseCard());
+    void displayDeck();
+    void addCardsFromDeck(Deck& mainDeck);
 };
-
 #endif
