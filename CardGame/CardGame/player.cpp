@@ -7,7 +7,7 @@ Player::Player() {
     manaNow = 10;
 }
 
-Card Player::chooseCard(Player& pl) {
+Card Player::chooseCard() {
     // Display the player's deck
     displayDeck();
 
@@ -17,7 +17,7 @@ Card Player::chooseCard(Player& pl) {
     cin >> index;
 
     // Validate the input
-    while (index >= playerDeck.size() || playerDeck[index].mana <= pl.manaNow) {
+    while (index >= playerDeck.size() || playerDeck[index].mana <= manaNow) {
         cout << "Invalid index. Choose a card index: ";
         cin >> index;
     }
@@ -26,9 +26,9 @@ Card Player::chooseCard(Player& pl) {
     return playerDeck[index];
 }
 
-void Player::discardCard(Player& pl, Opponent& op, Card& chooseCard()) {
+void Player::discardCard(Player& pl, Opponent& op, Card choosenCard) {
     if (!playerDeck.empty()) {
-        Card discardedCard = chooseCard();
+        Card discardedCard = choosenCard;
         discardedCard = playerDeck.back();
         playerDeck.pop_back();
         pl.manaNow -= discardedCard.mana;
@@ -47,7 +47,7 @@ void Player::displayDeck() {
     }
 }
 
-void Player::addCardsFromDeck(Deck& mainDeck) {
+void Player::addCardsFromDeck(Deck mainDeck) {
     // Add cards from the main deck to the player's deck until it reaches 5 cards or the main deck is empty
     while (playerDeck.size() < 5 && !mainDeck.getCards().empty()) {
         playerDeck.push_back(mainDeck.getCards().back());

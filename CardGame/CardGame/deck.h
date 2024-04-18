@@ -10,4 +10,5 @@ private:
 public:
     Deck();
     vector<Card> getCards();
+    Deck initialization();
 };

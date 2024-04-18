@@ -1,5 +1,5 @@
 #include "deck.h"
-Deck::Deck() {
+Deck Deck::initialization() {
     // Arrays of possible names, mana values, and hit values
     string names[] = { "Card1", "Card2", "Card3", "Card4", "Card5" };
     int manaValues[] = { 1, 2, 3, 4, 5 };
