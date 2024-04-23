@@ -1,4 +1,7 @@
 #include "deck.h"
+#include <cstdlib>
+#include <ctime>
+
 Deck Deck::initialization() {
     // Arrays of possible names, mana values, and hit values
     string names[] = { "Card1", "Card2", "Card3", "Card4", "Card5" };
@@ -11,7 +14,7 @@ Deck Deck::initialization() {
     int numHitValues = sizeof(hitValues) / sizeof(hitValues[0]);
 
     // Seed the random number generator
-    srand(time(0));
+    srand(static_cast<unsigned>(time(nullptr)));
 
     // Fill the deck with 20 random cards
     for (int i = 0; i < 20; ++i) {
@@ -23,10 +26,10 @@ Deck Deck::initialization() {
         // Create a card with the randomly selected values and add it to the deck
         cards.push_back(Card(names[nameIndex], manaValues[manaIndex], hitValues[hitIndex]));
     }
+
+    return *this; // Return the initialized deck
 }
 
-vector<Card> Deck::getCards(){
+vector<Card>& Deck::getCards() {
     return cards;
 }
-
-

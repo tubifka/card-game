@@ -1,10 +1,19 @@
 #include "player.h"
-#include "opponent.h"
 #include <iostream>
 
-Player::Player() {
-    health = 20;
-    manaNow = 10;
+void Player::setHealth(int newHealth) {
+    health = newHealth;
+}
+
+int Player::getHealth() {
+    return health;
+}
+
+int Player::getManaNow() {
+    return manaNow;
+}
+
+Player::Player() : health(20), manaNow(10) {
 }
 
 Card Player::chooseCard() {
@@ -17,8 +26,8 @@ Card Player::chooseCard() {
     cin >> index;
 
     // Validate the input
-    while (index >= playerDeck.size() || playerDeck[index].mana <= manaNow) {
-        cout << "Invalid index. Choose a card index: ";
+    while (index >= playerDeck.size() || playerDeck[index].mana > manaNow) {
+        cout << "Invalid index or insufficient mana. Choose a valid card index: ";
         cin >> index;
     }
 
@@ -26,14 +35,13 @@ Card Player::chooseCard() {
     return playerDeck[index];
 }
 
-void Player::discardCard(Player& pl, Opponent& op, Card choosenCard) {
+void Player::discardCard(Player& pl, Opponent& op, Card chosenCard) {
     if (!playerDeck.empty()) {
-        Card discardedCard = choosenCard;
-        discardedCard = playerDeck.back();
+        Card discardedCard = playerDeck.back();
         playerDeck.pop_back();
         pl.manaNow -= discardedCard.mana;
         cout << "Player threw a card: " << discardedCard.name << endl;
-        op.health -= discardedCard.hit;
+        op.setHealth(op.getHealth()-discardedCard.hit);
         if (pl.manaNow < 10) {
             pl.manaNow += 3;
         }
@@ -42,12 +50,17 @@ void Player::discardCard(Player& pl, Opponent& op, Card choosenCard) {
 
 void Player::displayDeck() {
     cout << "Player deck:" << endl;
-    for (auto& card : playerDeck) {
-        card.display();
+    if (playerDeck.empty()) {
+        cout << "Empty" << endl;
+        return;
+    }
+    for (size_t i = 0; i < playerDeck.size(); ++i) {
+        cout << i << ": ";
+        playerDeck[i].display();
     }
 }
 
-void Player::addCardsFromDeck(Deck mainDeck) {
+void Player::addCardsFromDeck(Deck& mainDeck) {
     // Add cards from the main deck to the player's deck until it reaches 5 cards or the main deck is empty
     while (playerDeck.size() < 5 && !mainDeck.getCards().empty()) {
         playerDeck.push_back(mainDeck.getCards().back());

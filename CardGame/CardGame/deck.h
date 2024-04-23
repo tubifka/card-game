@@ -1,14 +1,19 @@
-#include <iostream>
-#include <vector>
-#include "card.h"
+#ifndef DECK_H
+#define DECK_H
 
+#include "card.h"
+#include <vector>
+
+using namespace std;
 
 class Deck {
 private:
     vector<Card> cards;
 
 public:
-    Deck();
-    vector<Card> getCards();
     Deck initialization();
+    vector<Card>& getCards(); // Return a reference to the deck vector
 };
+
+#endif // DECK_H
+

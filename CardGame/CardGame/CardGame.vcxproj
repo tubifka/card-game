@@ -138,7 +138,7 @@
     <ClInclude Include="deck.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="opponent.h" />
-    <ClInclude Include="Player.h" />
+    <ClInclude Include="player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
