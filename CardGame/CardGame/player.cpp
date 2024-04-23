@@ -1,6 +1,11 @@
 #include "player.h"
 #include <iostream>
 
+const string RED = "\033[31m";
+const string LightBLUE = "\033[96m";
+const string RESET = "\033[0m";
+
+
 void Player::setHealth(int newHealth) {
     health = newHealth;
 }
@@ -21,7 +26,8 @@ Card Player::chooseCard() {
     displayDeck();
 
     // Ask the player to choose a card index
-    cout << "Choose a card index: ";
+    cout << RED << "\nROUND" << RESET << endl;
+    cout << "Choose a card: " << LightBLUE;
     size_t index;
     cin >> index;
 
@@ -41,7 +47,7 @@ void Player::discardCard(Player& pl, Player& op, Card chosenCard) {
         playerDeck.pop_back();
         pl.manaNow -= discardedCard.mana;
         cout << "Player threw a card: " << discardedCard.name << endl;
-        op.setHealth(op.getHealth()-discardedCard.hit);
+        op.setHealth(op.getHealth() - discardedCard.hit);
         if (pl.manaNow < 10) {
             pl.manaNow += 3;
         }
@@ -49,20 +55,21 @@ void Player::discardCard(Player& pl, Player& op, Card chosenCard) {
 }
 
 void Player::displayDeck() {
-    cout << "Player deck:" << endl;
+    cout << RED << "The PLAYER received the following cards:" << endl;
+    cout << RESET;
     if (playerDeck.empty()) {
         cout << "Empty" << endl;
         return;
     }
-    for (size_t i = 0; i < playerDeck.size(); ++i) {
-        cout << i << ": ";
+    for (size_t i = 1; i < playerDeck.size(); ++i) {
+        cout << "\n" << i << ": ";
         playerDeck[i].display();
     }
 }
 
 void Player::addCardsFromDeck(Deck& mainDeck) {
     // Add cards from the main deck to the player's deck until it reaches 5 cards or the main deck is empty
-    while (playerDeck.size() < 5 && !mainDeck.getCards().empty()) {
+    while (playerDeck.size() < 6 && !mainDeck.getCards().empty()) {
         playerDeck.push_back(mainDeck.getCards().back());
         mainDeck.getCards().pop_back();
     }

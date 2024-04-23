@@ -18,7 +18,7 @@ private:
 public:
     Player();
     Card chooseCard();
-    void discardCard(Player& pl, Opponent& op, Card chosenCard);
+    void discardCard(Player& pl, Player& op, Card chosenCard);
     void displayDeck();
     void addCardsFromDeck(Deck& mainDeck);
     int getHealth();
