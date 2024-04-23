@@ -15,10 +15,10 @@ public:
     int manaNow;
 
     Player();
-    Card chooseCard(Player& pl);
-    void discardCard(Player& pl, Opponent& op, Card& chooseCard());
+    Card chooseCard();
+    void discardCard(Player& pl, Opponent& op, Card choosenCard);
     void displayDeck();
-    void addCardsFromDeck(Deck& mainDeck);
+    void addCardsFromDeck(Deck mainDeck);
 };
 
 #endif

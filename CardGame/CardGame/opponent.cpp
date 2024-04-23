@@ -6,7 +6,7 @@ Opponent :: Opponent() {
     manaNow = 10;
 }
 
-Card Opponent::chooseCard(Opponent& op) {
+Card Opponent::chooseCard() {
     // Display the player's deck
     displayDeck();
 
@@ -15,16 +15,16 @@ Card Opponent::chooseCard(Opponent& op) {
     index = rand() % 5;
 
     // Validate the input
-        while (index >= opponentDeck.size() || opponentDeck[index].mana <= op.manaNow) {
+        while (index >= opponentDeck.size() || opponentDeck[index].mana <= manaNow) {
             index = rand() % 5;
         }
     // Return the chosen card
     return opponentDeck[index];
 }
 
-void Opponent::discardCard(Player& pl, Opponent& op, Card& chooseCard()) {
+void Opponent::discardCard(Player& pl, Opponent& op, Card choosenCard) {
     if (!opponentDeck.empty()) {
-        Card discardedCard = chooseCard();
+        Card discardedCard = choosenCard;
         discardedCard = opponentDeck.back();
         opponentDeck.pop_back();
         op.manaNow -= discardedCard.mana;
