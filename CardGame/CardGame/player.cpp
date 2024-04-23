@@ -35,7 +35,7 @@ Card Player::chooseCard() {
     return playerDeck[index];
 }
 
-void Player::discardCard(Player& pl, Opponent& op, Card chosenCard) {
+void Player::discardCard(Player& pl, Player& op, Card chosenCard) {
     if (!playerDeck.empty()) {
         Card discardedCard = playerDeck.back();
         playerDeck.pop_back();

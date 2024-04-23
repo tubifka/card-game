@@ -11,7 +11,7 @@ using namespace std;
 
 int main() {
     Player player;
-    Opponent opponent;
+    Player opponent;
     Deck deck;
     deck.initialization();
     player.addCardsFromDeck(deck);
