@@ -45,11 +45,13 @@ void Player::discardCard(Player& pl, Player& op, Card chosenCard) {
     if (!playerDeck.empty()) {
         Card discardedCard = playerDeck.back();
         playerDeck.pop_back();
-        pl.manaNow -= discardedCard.mana;
-        cout << "Player threw a card: " << discardedCard.name << endl;
-        op.setHealth(op.getHealth() - discardedCard.hit);
+        pl.manaNow -= chosenCard.mana;
+        op.setHealth(op.getHealth() - chosenCard.hit);
         if (pl.manaNow < 10) {
             pl.manaNow += 3;
+            while (pl.manaNow > 10) {
+                pl.manaNow--;
+            }
         }
     }
 }

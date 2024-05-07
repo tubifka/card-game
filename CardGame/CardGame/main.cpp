@@ -2,12 +2,12 @@
 #include <cstdlib>
 #include <ctime>
 #include "player.h" // Підключаємо клас Player
-#include "opponent.h" // Підключаємо клас Opponent
-
 
 #include "deck.h"
 
 using namespace std;
+
+
 
 int main() {
     Player player;
@@ -20,8 +20,28 @@ int main() {
     while (player.getHealth() > 0 && opponent.getHealth() > 0) {
         Card chosenCard = player.chooseCard();
         player.discardCard(player, opponent, chosenCard); // Pass player and opponent objects
+        cout << "Player hit with: " << chosenCard.hit << endl;
+        cout << "Opponent hp: " << opponent.getHealth() << endl;
+        cout << "Player mana: " << player.getManaNow() << endl;
+        if (opponent.getHealth() <= 0) {
+            cout << "Player has won" << endl;
+            break;
+        }
+
         chosenCard = opponent.chooseCard();
-        opponent.discardCard(player, opponent, chosenCard); // Pass player and opponent objects
+        opponent.discardCard(opponent, player, chosenCard); // Pass player and opponent objects     
+        cout << "Opponent hit with: " << chosenCard.hit << endl;
+        cout << "Player hp: " << player.getHealth() << endl;
+        cout << "Opponent mana: " << opponent.getManaNow() << endl;
+        if (player.getHealth() <= 0) {
+            cout << "Opponent has won" << endl;
+            break;
+        }
+        if (deck.getCards().empty()) {
+            cout << "No more cards left " << endl;
+            cout << "Draw" << endl;
+            break;
+        }
     }
     return 0;
 }

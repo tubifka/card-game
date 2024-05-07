@@ -2,7 +2,6 @@
 #define PLAYER_H
 
 #include "deck.h"
-#include "opponent.h"
 #include "card.h"
 #include <vector>
 #include <iostream>
