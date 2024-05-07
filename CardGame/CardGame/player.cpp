@@ -1,4 +1,4 @@
-#include "player.h"
+﻿#include "player.h"
 #include <iostream>
 
 const string RED = "\033[31m";
@@ -57,6 +57,13 @@ void Player::discardCard(Player& pl, Player& op, Card chosenCard) {
 }
 
 void Player::displayDeck() {
+
+    cout << LightBLUE << "._____      =       .___.   .____.    ._____      =     ._      _. .____\n";
+    cout << LightBLUE << "||        // \\    ||   ||  ||   ||   ||         // \\    ||      || || \n";
+    cout << LightBLUE << "||       //   \\   ||___||  ||   ||   ||        //   \\   ||  \\// || ||---\n";
+    cout << LightBLUE << "||      // === \\  ||\\      ||   ||   || ===   // === \\  ||      || ||---\n";
+    cout << LightBLUE << "||____ //       \\ ||  \\    ||___||   ||___|| //       \\ ||      || ||___\n";
+    cout << endl;
     cout << RED << "The PLAYER received the following cards:" << endl;
     cout << RESET;
     if (playerDeck.empty()) {

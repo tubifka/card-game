@@ -6,8 +6,8 @@
 #include "deck.h"
 
 using namespace std;
-
-
+const string RED = "\033[31m";
+const string LightBLUE = "\033[96m";
 
 int main() {
     Player player;
@@ -34,7 +34,12 @@ int main() {
         cout << "Player hp: " << player.getHealth() << endl;
         cout << "Opponent mana: " << opponent.getManaNow() << endl;
         if (player.getHealth() <= 0) {
-            cout << "Opponent has won" << endl;
+            cout << LightBLUE << " ___   . ___    . ___      ___  ._     _. .____  ._    _.   =====      .      .      .  ___   ._     _. ...\n";
+            cout << LightBLUE << "||  || ||   ||  ||   ||  ||  ||  ||\\   || ||     ||\\   ||    ||        \\          //  ||  ||  ||\\   || | |\n";
+            cout << LightBLUE << "||  || ||   ||  ||   ||  ||  ||  ||  \\ || ||---  ||  \\ ||    ||         \\  //\\   //   ||  ||  ||  \\ || | |\n";
+            cout << LightBLUE << "||  || ||---    ||---    ||  ||  ||    \|| ||---  ||    \||    ||          \\//  \\ //    ||  ||  ||    \|| |_|\n";
+            cout << LightBLUE << " ---   ||       ||        ---    ||    || ||___  ||    ||    -          -      -       ---   ||    || .\n";
+
             break;
         }
         if (deck.getCards().empty()) {
@@ -43,5 +48,12 @@ int main() {
             break;
         }
     }
+
+
+    cout << RED << "._____      =      ._      _. .____      ___ .      .  .____   .___. \n";
+    cout << RED << "||         // \\    ||      || ||       ||  || \\    //  ||     ||   ||\n";
+    cout << RED << "||        //   \\   ||  \\// || ||---    ||  ||  \\  //   ||---  ||___|| \n";
+    cout << RED << "|| ===   // === \\  ||      || ||---    ||  ||   \\//    ||---  ||\\\n";
+    cout << RED << "||___|| //       \\ ||      || ||___      ---     -     ||___  ||  \\ \n";
     return 0;
 }
