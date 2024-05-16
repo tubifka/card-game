@@ -13,7 +13,7 @@ public:
     int hit; //сила карти
 
     Card(const string& n, int m, int h);
-    void display();
+    void display(bool selected);
 };
 
 #endif

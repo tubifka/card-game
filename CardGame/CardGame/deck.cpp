@@ -17,7 +17,7 @@ Deck Deck::initialization() {
     srand(static_cast<unsigned>(time(nullptr)));
 
     // Fill the deck with 20 random cards
-    for (int i = 0; i < 20; ++i) {
+    for (int i = 0; i < 30; ++i) {
         // Generate random indices for selecting values from arrays
         int nameIndex = rand() % numNames;
         int manaIndex = rand() % numManaValues;

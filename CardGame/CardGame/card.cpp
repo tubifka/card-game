@@ -13,30 +13,32 @@ const string RESET = "\033[0m"; // reset standart color
 
 Card::Card(const string& n, int m, int h) : name(n), mana(m), hit(h) {}
 
-void Card::display() {
+void Card::display(bool selected) {
     const int frameWidth = 20;
+    const string color = selected ? GREEN : RESET;
 
     // top frame
     cout << "\n" << ".";
-    cout << string(frameWidth - 3, '-') << ".\n";
+    cout << color << string(frameWidth - 3, '-') << ".\n";
 
-    // centered tittle
+    // centered title
     int center = (frameWidth - 2) / 2;
-    cout << "|";
+    cout << color << "|";
     cout << setw(center) << right << PURPLE; // change color
     cout << "CARD";
-    cout << RESET; //reset to standart
+    cout << color; // reset to standard
     cout << setw(center) << " ";
     cout << "|\n";
 
-    //middle frame
+    // middle frame
     cout << "." << string(frameWidth - 3, '-') << ".\n";
 
     // cards
-    cout << "| Name: " << GREEN << setw(frameWidth - 10) << left << name << RESET << "|\n";
-    cout << "| Mana: " << RED << setw(frameWidth - 10) << left << mana << RESET << "|\n";
-    cout << "| Hit: " << RED << setw(frameWidth - 9) << left << hit << RESET << "|\n";
+    cout << "| Name: " << setw(frameWidth - 10) << left << name << "|\n";
+    cout << "| Mana: " << setw(frameWidth - 10) << left << mana << "|\n";
+    cout << "| Hit: "  << setw(frameWidth - 9) << left << hit << "|\n";
 
-    //lower frame
+    // lower frame
     cout << "." << string(frameWidth - 3, '-') << ".\n";
+    cout << RESET;
 }

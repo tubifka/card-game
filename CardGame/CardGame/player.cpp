@@ -1,5 +1,9 @@
 ﻿#include "player.h"
 #include <iostream>
+#include <conio.h>
+
+#define KEY_UP 72
+#define KEY_DOWN 80
 
 const string RED = "\033[31m";
 const string LightBLUE = "\033[96m";
@@ -18,28 +22,55 @@ int Player::getManaNow() {
     return manaNow;
 }
 
+void Player::setName(string newName) {
+    name = newName;
+}
+
 Player::Player() : health(20), manaNow(10) {
 }
 
-Card Player::chooseCard() {
-    // Display the player's deck
-    displayDeck();
+Card Player::playerChooseCard(Player& opponent) {
+    size_t index = 0;
 
-    // Ask the player to choose a card index
-    cout << RED << "\nROUND" << RESET << endl;
-    cout << "Choose a card: " << LightBLUE;
-    size_t index;
-    cin >> index;
 
-    // Validate the input
-    while (index >= playerDeck.size() || playerDeck[index].mana > manaNow) {
-        cout << "Invalid index or insufficient mana. Choose a valid card index: ";
-        cin >> index;
+    while (true) {
+        // Clear the screen or move cursor to show only updated parts
+        system("CLS"); // Note: This is platform dependent, and might need alternatives for non-Windows systems.
+        displayDeck(index, opponent);
+
+
+
+        // Get user input
+        int c = _getch(); // Using _getch() to get arrow keys
+
+        if (c == 224) { // Arrow keys are returned as two codes, first is 224
+            c = _getch(); // Get the actual key code
+
+            switch (c) {
+            case KEY_UP:
+                if (index > 0) {
+                    index--; // Move up in the deck
+                }
+                break;
+            case KEY_DOWN:
+                if (index < playerDeck.size() - 1) {
+                    index++; // Move down in the deck
+                }
+                break;
+            }
+        }
+        else if (c == '\r') { // Enter key is pressed
+            if (playerDeck[index].mana <= manaNow) {
+                // Return the chosen card if valid
+                return playerDeck[index];
+            }
+            else {
+                cout << "Insufficient mana for the selected card. Choose another card." << endl;
+            }
+        }
     }
-
-    // Return the chosen card
-    return playerDeck[index];
 }
+
 
 void Player::discardCard(Player& pl, Player& op, Card chosenCard) {
     if (!playerDeck.empty()) {
@@ -49,15 +80,14 @@ void Player::discardCard(Player& pl, Player& op, Card chosenCard) {
         op.setHealth(op.getHealth() - chosenCard.hit);
         if (pl.manaNow < 10) {
             pl.manaNow += 3;
-            while (pl.manaNow > 10) {
-                pl.manaNow--;
-            }
+            if (pl.manaNow > 10) {
+                pl.manaNow = 10;
+           }
         }
     }
 }
 
-void Player::displayDeck() {
-
+void Player::displayDeck(size_t selectedIndex, Player& opponent) {
     cout << LightBLUE << "._____      =       .___.   .____.    ._____      =     ._      _. .____\n";
     cout << LightBLUE << "||        // \\    ||   ||  ||   ||   ||         // \\    ||      || || \n";
     cout << LightBLUE << "||       //   \\   ||___||  ||   ||   ||        //   \\   ||  \\// || ||---\n";
@@ -66,14 +96,31 @@ void Player::displayDeck() {
     cout << endl;
     cout << RED << "The PLAYER received the following cards:" << endl;
     cout << RESET;
+    displayStats(opponent);
     if (playerDeck.empty()) {
         cout << "Empty" << endl;
         return;
     }
     for (size_t i = 1; i < playerDeck.size(); ++i) {
-        cout << "\n" << i << ": ";
-        playerDeck[i].display();
+        if (i == selectedIndex) {
+            cout << "\n" << i << ": ";
+            playerDeck[i].display(true);
+        }
+        else {
+            cout << "\n" << i << ": ";
+            playerDeck[i].display(false);
+        }
     }
+}
+
+void Player::displayStats(Player& op) {
+    cout << name << endl;
+    cout << "Health: " << getHealth() << endl;
+    cout << "Mana: " << getManaNow() << endl;
+
+    cout << "Opponent" << endl;
+    cout << "Health: " << op.getHealth() << endl;
+    cout << "Mana: " << op.getManaNow() << endl;
 }
 
 void Player::addCardsFromDeck(Deck& mainDeck) {

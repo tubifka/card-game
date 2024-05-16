@@ -10,19 +10,22 @@ using namespace std;
 
 class Player {
 private:
+    string name;
     int health;
     int manaNow;
     vector<Card> playerDeck;
 
 public:
     Player();
-    Card chooseCard();
+    Card playerChooseCard(Player& opponent);
     void discardCard(Player& pl, Player& op, Card chosenCard);
-    void displayDeck();
+    void displayDeck(size_t selectedIndex, Player& opponent);
     void addCardsFromDeck(Deck& mainDeck);
+    void displayStats(Player& op);
     int getHealth();
     int getManaNow();
     void setHealth(int newHealth);
+    void setName(string name);
 };
 
 #endif // PLAYER_H
