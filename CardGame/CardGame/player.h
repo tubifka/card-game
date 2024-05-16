@@ -17,11 +17,12 @@ private:
 
 public:
     Player();
-    Card playerChooseCard(Player& opponent);
+    Card playerChooseCard(Player& player, Player& opponent);
     void discardCard(Player& pl, Player& op, Card chosenCard);
-    void displayDeck(size_t selectedIndex, Player& opponent);
+    void displayDeck(size_t selectedIndex, Player& player, Player& opponent);
     void addCardsFromDeck(Deck& mainDeck);
-    void displayStats(Player& op);
+    void displayStats(Player& pl, Player& op);
+    Card opponentChooseCard();
     int getHealth();
     int getManaNow();
     void setHealth(int newHealth);
