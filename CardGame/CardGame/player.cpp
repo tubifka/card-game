@@ -1,6 +1,7 @@
 ﻿#include "player.h"
 #include <iostream>
 #include <conio.h>
+#include "main.h"
 
 #define KEY_UP 72
 #define KEY_DOWN 80
@@ -29,15 +30,15 @@ void Player::setName(string newName) {
 Player::Player() : health(20), manaNow(10) {
 }
 
-Card Player::playerChooseCard(Player& opponent) {
+Card Player::playerChooseCard(Player& player, Player& opponent) {
     size_t index = 0;
 
 
     while (true) {
         // Clear the screen or move cursor to show only updated parts
         system("CLS"); // Note: This is platform dependent, and might need alternatives for non-Windows systems.
-        displayDeck(index, opponent);
-
+        printStart();
+        displayDeck(index, player, opponent);
 
 
         // Get user input
@@ -77,7 +78,10 @@ void Player::discardCard(Player& pl, Player& op, Card chosenCard) {
         Card discardedCard = playerDeck.back();
         playerDeck.pop_back();
         pl.manaNow -= chosenCard.mana;
-        op.setHealth(op.getHealth() - chosenCard.hit);
+        op.health -= chosenCard.hit;
+        if (op.health < 0) {
+            op.health = 0;
+        }
         if (pl.manaNow < 10) {
             pl.manaNow += 3;
             if (pl.manaNow > 10) {
@@ -87,16 +91,9 @@ void Player::discardCard(Player& pl, Player& op, Card chosenCard) {
     }
 }
 
-void Player::displayDeck(size_t selectedIndex, Player& opponent) {
-    cout << LightBLUE << "._____      =       .___.   .____.    ._____      =     ._      _. .____\n";
-    cout << LightBLUE << "||        // \\    ||   ||  ||   ||   ||         // \\    ||      || || \n";
-    cout << LightBLUE << "||       //   \\   ||___||  ||   ||   ||        //   \\   ||  \\// || ||---\n";
-    cout << LightBLUE << "||      // === \\  ||\\      ||   ||   || ===   // === \\  ||      || ||---\n";
-    cout << LightBLUE << "||____ //       \\ ||  \\    ||___||   ||___|| //       \\ ||      || ||___\n";
-    cout << endl;
-    cout << RED << "The PLAYER received the following cards:" << endl;
-    cout << RESET;
-    displayStats(opponent);
+void Player::displayDeck(size_t selectedIndex, Player& player, Player& opponent) {
+   
+    displayStats(player, opponent);
     if (playerDeck.empty()) {
         cout << "Empty" << endl;
         return;
@@ -113,14 +110,14 @@ void Player::displayDeck(size_t selectedIndex, Player& opponent) {
     }
 }
 
-void Player::displayStats(Player& op) {
-    cout << name << endl;
-    cout << "Health: " << getHealth() << endl;
-    cout << "Mana: " << getManaNow() << endl;
+void Player::displayStats(Player& pl, Player& op) {
+    cout << pl.name << endl;
+    cout << "Health: " << pl.health << endl;
+    cout << "Mana: " << pl.manaNow << endl;
 
     cout << "Opponent" << endl;
-    cout << "Health: " << op.getHealth() << endl;
-    cout << "Mana: " << op.getManaNow() << endl;
+    cout << "Health: " << op.health << endl;
+    cout << "Mana: " << op.manaNow << endl;
 }
 
 void Player::addCardsFromDeck(Deck& mainDeck) {
@@ -129,4 +126,11 @@ void Player::addCardsFromDeck(Deck& mainDeck) {
         playerDeck.push_back(mainDeck.getCards().back());
         mainDeck.getCards().pop_back();
     }
+}
+
+Card Player::opponentChooseCard() {
+    size_t index = 0;
+
+
+
 }

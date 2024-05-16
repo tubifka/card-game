@@ -8,6 +8,6 @@
 
 #include "deck.h"
 
-
+void printStart();
 #endif
 

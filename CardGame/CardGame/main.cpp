@@ -9,6 +9,18 @@ using namespace std;
 
 const string RED = "\033[31m";
 const string LightBLUE = "\033[96m";
+const string RESET = "\033[0m";
+
+void printStart() {
+    cout << LightBLUE << "._____      =       .___.   .____.    ._____      =     ._      _. .____\n";
+    cout << LightBLUE << "||        // \\    ||   ||  ||   ||   ||         // \\    ||      || || \n";
+    cout << LightBLUE << "||       //   \\   ||___||  ||   ||   ||        //   \\   ||  \\// || ||---\n";
+    cout << LightBLUE << "||      // === \\  ||\\      ||   ||   || ===   // === \\  ||      || ||---\n";
+    cout << LightBLUE << "||____ //       \\ ||  \\    ||___||   ||___|| //       \\ ||      || ||___\n";
+    cout << endl;
+    cout << RED << "The PLAYER received the following cards:" << endl;
+    cout << RESET;
+}
 
 bool winOp(Player& player) {
     if (player.getHealth() <= 0) {
@@ -46,8 +58,9 @@ void endGame() {
 }
 
 void game(Player& player, Player& opponent, Deck& deck) {
+
     while (player.getHealth() > 0 && opponent.getHealth() > 0) {
-        Card chosenCard = player.playerChooseCard(opponent);
+        Card chosenCard = player.playerChooseCard(player, opponent);
         player.discardCard(player, opponent, chosenCard); // Pass player and opponent objects
         cout << "Player hit with: " << chosenCard.hit << endl;
         cout << "Opponent hp: " << opponent.getHealth() << endl;
@@ -58,7 +71,7 @@ void game(Player& player, Player& opponent, Deck& deck) {
 
         player.addCardsFromDeck(deck);
 
-        chosenCard = opponent.playerChooseCard(player);
+        chosenCard = opponent.playerChooseCard(player, opponent);
         opponent.discardCard(opponent, player, chosenCard); // Pass player and opponent objects     
         cout << "Opponent hit with: " << chosenCard.hit << endl;
         cout << "Player hp: " << player.getHealth() << endl;
@@ -86,10 +99,10 @@ int main() {
     player.addCardsFromDeck(deck);
     opponent.addCardsFromDeck(deck);
 
+    printStart();
     cout << "Enter your name: ";
     cin >> name;
     cout << endl;
-
     player.setName(name);
 
     game(player, opponent, deck);
