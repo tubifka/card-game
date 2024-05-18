@@ -129,8 +129,13 @@ void Player::addCardsFromDeck(Deck& mainDeck) {
 }
 
 Card Player::opponentChooseCard() {
-    size_t index = 0;
+    size_t index;
 
-
+    while (true) {
+        index = rand() % 6;
+        if (manaNow >= playerDeck[index].mana) {
+            return playerDeck[index];
+        }
+    }
 
 }

@@ -62,20 +62,14 @@ void game(Player& player, Player& opponent, Deck& deck) {
     while (player.getHealth() > 0 && opponent.getHealth() > 0) {
         Card chosenCard = player.playerChooseCard(player, opponent);
         player.discardCard(player, opponent, chosenCard); // Pass player and opponent objects
-        cout << "Player hit with: " << chosenCard.hit << endl;
-        cout << "Opponent hp: " << opponent.getHealth() << endl;
-        cout << "Player mana: " << player.getManaNow() << endl;
         if (winPl(opponent)) {
             break;
         }
 
         player.addCardsFromDeck(deck);
 
-        chosenCard = opponent.playerChooseCard(player, opponent);
+        chosenCard = opponent.opponentChooseCard();
         opponent.discardCard(opponent, player, chosenCard); // Pass player and opponent objects     
-        cout << "Opponent hit with: " << chosenCard.hit << endl;
-        cout << "Player hp: " << player.getHealth() << endl;
-        cout << "Opponent mana: " << opponent.getManaNow() << endl;
         if (winOp(player)) {
             break;
         }

@@ -4,7 +4,7 @@
 
 Deck Deck::initialization() {
     // Arrays of possible names, mana values, and hit values
-    string names[] = { "CARD1", "CARD2", "CARD3", "CARD4", "CARD5" };
+    string names[] = { "Octavious", "Demorgan", "Shapocklak", "Midpicket", "Leviant" };
     int manaValues[] = { 1, 2, 3, 4, 5 };
     int hitValues[] = { 1, 2, 3, 4, 5 };
 
