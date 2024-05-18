@@ -1,5 +1,6 @@
 ﻿#include "player.h"
 #include <iostream>
+#include <iomanip> 
 #include <conio.h>
 #include "main.h"
 
@@ -8,6 +9,10 @@
 
 const string RED = "\033[31m";
 const string LightBLUE = "\033[96m";
+const string GREEN     = "\033[32m";
+const string YELLOW    = "\033[33m";
+const string BLUE    =   "\033[34m";
+const string MAGENTA  =  "\033[35m";
 const string RESET = "\033[0m";
 
 
@@ -111,14 +116,29 @@ void Player::displayDeck(size_t selectedIndex, Player& player, Player& opponent)
 }
 
 void Player::displayStats(Player& pl, Player& op) {
-    cout << pl.name << endl;
-    cout << "Health: " << pl.health << endl;
-    cout << "Mana: " << pl.manaNow << endl;
+    const int frameWidth = 20; // Ширина рамки
 
-    cout << "Opponent" << endl;
-    cout << "Health: " << op.health << endl;
-    cout << "Mana: " << op.manaNow << endl;
-}
+    // PLAYER FRAME
+    cout << YELLOW<< string(frameWidth - 3, '.') << ".\n";
+    cout << setw(frameWidth / 2) << pl.name << RESET << endl;
+    cout << "Health: " << GREEN << pl.health << RESET  << endl;
+    cout  << "Mana: " << GREEN << pl.manaNow << RESET  << endl;
+    cout << YELLOW << string(frameWidth - 3, '.') << "\n";
+
+    //OPPONENT FRAME
+    cout << YELLOW << string(frameWidth - 3, '.') << ".\n";
+    cout << setw(frameWidth / 2) << "OPPONENT" << RESET << endl;
+    cout <<  "Health: " << RED << op.health << RESET << endl;
+    cout <<  "Mana: " << RED << op.manaNow << RESET << endl;
+    cout << YELLOW << string(frameWidth - 3, '.') << RESET << "\n";
+
+    cout << endl;
+    cout << "!to choose a card use" << LightBLUE << " UP" << RESET << " or " << LightBLUE << "DOWN" << RESET << " arrow!" << endl;
+    cout << endl;
+    cout << "THE" << RED << " PLAYER " << RESET << "RECEIVED FOLLOWING CARDS:" << endl;
+   
+}  
+
 
 void Player::addCardsFromDeck(Deck& mainDeck) {
     // Add cards from the main deck to the player's deck until it reaches 5 cards or the main deck is empty

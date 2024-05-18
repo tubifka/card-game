@@ -16,11 +16,11 @@ void printStart() {
     cout << LightBLUE << "||        // \\    ||   ||  ||   ||   ||         // \\    ||      || || \n";
     cout << LightBLUE << "||       //   \\   ||___||  ||   ||   ||        //   \\   ||  \\// || ||---\n";
     cout << LightBLUE << "||      // === \\  ||\\      ||   ||   || ===   // === \\  ||      || ||---\n";
-    cout << LightBLUE << "||____ //       \\ ||  \\    ||___||   ||___|| //       \\ ||      || ||___\n";
+    cout << LightBLUE << "||____ //       \\ ||  \\    ||___||   ||___|| //       \\ ||      || ||___\n" << RESET;
     cout << endl;
-    cout << RED << "The PLAYER received the following cards:" << endl;
-    cout << RESET;
+  
 }
+
 
 bool winOp(Player& player) {
     if (player.getHealth() <= 0) {
@@ -29,7 +29,7 @@ bool winOp(Player& player) {
         cout << LightBLUE << "||  || ||   ||  ||   ||  ||  ||  ||\\   || ||     ||\\   ||    ||        \\          //  ||  ||  ||\\   || | |\n";
         cout << LightBLUE << "||  || ||   ||  ||   ||  ||  ||  ||  \\ || ||---  ||  \\ ||    ||         \\  //\\   //   ||  ||  ||  \\ || | |\n";
         cout << LightBLUE << "||  || ||---    ||---    ||  ||  ||    \|| ||---  ||    \||    ||          \\//  \\ //    ||  ||  ||    \|| |_|\n";
-        cout << LightBLUE << " ---   ||       ||        ---    ||    || ||___  ||    ||    -          -      -       ---   ||    || .\n";
+        cout << LightBLUE << " ---   ||       ||        ---    ||    || ||___  ||    ||    -          -      -       ---   ||    || .\n" << RESET;
         return true;
     }
     else {
@@ -40,7 +40,11 @@ bool winOp(Player& player) {
 bool winPl(Player& opponent) {
     if (opponent.getHealth() <= 0) {
         opponent.setHealth(10);
-        cout << LightBLUE << "Player has won ";
+        cout << LightBLUE << " . ---   --        --     \\      //  .____  .___.         .      .      .  ___   ._     _. ...\n";
+        cout << LightBLUE << " ||   || ||      //  \\    \\    //   ||     ||   ||        \\          //  ||  ||  ||\\   || | |\n";
+        cout << LightBLUE << " ||   || ||     //    \\     \||/     ||---  ||____||         \\  //\\   //   ||  ||  ||  \\ || | |\n";
+        cout << LightBLUE << " ||---   ||    //------\\     ||      ||---  ||\\             \\//  \\ //    ||  ||  ||    \|| |_|\n";
+        cout << LightBLUE << " ||      ||___//        \\    ||      ||___  ||  \\            -      -       ---   ||    || .\n" << RESET;
 
         return true;
     }
@@ -54,7 +58,7 @@ void endGame() {
     cout << RED << "||         // \\    ||      || ||       ||  || \\    //  ||     ||   ||\n";
     cout << RED << "||        //   \\   ||  \\// || ||---    ||  ||  \\  //   ||---  ||___|| \n";
     cout << RED << "|| ===   // === \\  ||      || ||---    ||  ||   \\//    ||---  ||\\\n";
-    cout << RED << "||___|| //       \\ ||      || ||___      ---     -     ||___  ||  \\ \n";
+    cout << RED << "||___|| //       \\ ||      || ||___      ---     -     ||___  ||  \\ \n" << RESET;
 }
 
 void game(Player& player, Player& opponent, Deck& deck) {
@@ -77,8 +81,12 @@ void game(Player& player, Player& opponent, Deck& deck) {
         opponent.addCardsFromDeck(deck);
 
         if (deck.getCards().empty()) {
-            cout << "No more cards left " << endl;
-            cout << "Draw" << endl;
+            cout << RED << "NO CARDS LEFT " << RESET << endl;
+            cout << RED << "._____   .___.         ___     __                __  \n";
+            cout << RED << "||    \\ ||   \\     //   \\    \\      __      //   \n";
+            cout << RED << "||    || ||___||    // ____\\    \\    //\\    // \n";
+            cout << RED << "||    || ||  \\    //       \\    \\  //  \\  //  \n";
+            cout << RED << "||___//  ||   \\  //         \\    \\//    \\//  \n" << RESET;
             break;
         }
     }
@@ -98,6 +106,7 @@ int main() {
     cin >> name;
     cout << endl;
     player.setName(name);
+    
 
     game(player, opponent, deck);
 
