@@ -10,6 +10,8 @@ using namespace std;
 const string RED = "\033[31m";
 const string LightBLUE = "\033[96m";
 const string RESET = "\033[0m";
+const string BOLD = "\033[1m";
+const string YELLOW = "\033[33m";
 
 void printStart() {
     cout << LightBLUE << "._____      =       .___.   .____.    ._____      =     ._      _. .____\n";
@@ -21,6 +23,26 @@ void printStart() {
   
 }
 
+void showInstructions() {
+   
+    cout << LightBLUE << "     _     _   _____  .      .     .   ======= _____      . ___   _           --  \\       //\n";
+    cout << LightBLUE << "    | |   | | ||   || \\          //      ||   ||   ||    ||   || ||          //\\   \\     //\n";
+    cout << LightBLUE << "    | | _ | | ||   ||  \\  //\\   //       ||   ||   ||    ||   || ||         //  \\   \\   //\n";
+    cout << LightBLUE << "    |   -   | ||   ||   \\//  \\ //        ||   ||   ||    ||   || ||        //----\\    \||/\n";
+    cout << LightBLUE << "    | |   | | ||   ||    \/    \//         ||   ||   ||    ||---   ||       //      \\   ||\n";
+    cout << LightBLUE << "    |_|   |_|  _____    -      -         -     _____     ||      ||===== //        \\  || \n" << RESET;
+
+    cout << YELLOW << "Each player starts with a certain amount of health and a deck of cards.\n" << RESET;
+    cout << YELLOW << "Each turn, players select a card using" << RED << " UP" << RESET << YELLOW << " or " << RESET << RED << "DOWN" << RESET << YELLOW << " on the keyboard.\n" << RESET << RESET;
+    cout << YELLOW << "The chosen card affects the health of the opponent based on the card's power.\n" << RESET;
+    cout << YELLOW << "After playing a card, the player draws new cards from the deck.\n" << RESET;
+    cout << YELLOW << "The game continues until one player's health drops to zero, declaring the other player the winner.\n" << RESET;
+
+    cout << RED << "\nPress Enter to start game!" << endl << RESET;
+    cin.ignore(); // Ignore any previous input
+    cin.get(); // Wait for the user to press Enter
+}
+
 
 bool winOp(Player& player) {
     if (player.getHealth() <= 0) {
@@ -29,7 +51,7 @@ bool winOp(Player& player) {
         cout << LightBLUE << "||  || ||   ||  ||   ||  ||  ||  ||\\   || ||     ||\\   ||    ||        \\          //  ||  ||  ||\\   || | |\n";
         cout << LightBLUE << "||  || ||   ||  ||   ||  ||  ||  ||  \\ || ||---  ||  \\ ||    ||         \\  //\\   //   ||  ||  ||  \\ || | |\n";
         cout << LightBLUE << "||  || ||---    ||---    ||  ||  ||    \|| ||---  ||    \||    ||          \\//  \\ //    ||  ||  ||    \|| |_|\n";
-        cout << LightBLUE << " ---   ||       ||        ---    ||    || ||___  ||    ||    -          -      -       ---   ||    || .\n" << RESET;
+        cout << LightBLUE << " ---   ||       ||        ---    ||    || ||___  ||    ||    -           -      -       ---   ||    || .\n" << RESET;
         return true;
     }
     else {
@@ -101,6 +123,7 @@ int main() {
     player.addCardsFromDeck(deck);
     opponent.addCardsFromDeck(deck);
 
+    showInstructions();
     printStart();
     cout << "Enter your name: ";
     cin >> name;

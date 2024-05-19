@@ -133,8 +133,7 @@ void Player::displayStats(Player& pl, Player& op) {
     cout << YELLOW << string(frameWidth - 3, '.') << RESET << "\n";
 
     cout << endl;
-    cout << "!to choose a card use" << LightBLUE << " UP" << RESET << " or " << LightBLUE << "DOWN" << RESET << " arrow!" << endl;
-    cout << endl;
+    //cout << "!to choose a card use" << LightBLUE << " UP" << RESET << " or " << LightBLUE << "DOWN" << RESET << " arrow!" << endl;
     cout << "THE" << RED << " PLAYER " << RESET << "RECEIVED FOLLOWING CARDS:" << endl;
    
 }  
