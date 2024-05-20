@@ -3,6 +3,7 @@
 #include <iomanip> 
 #include <conio.h>
 #include "main.h"
+#include <utility> 
 
 #define KEY_UP 72
 #define KEY_DOWN 80
@@ -35,7 +36,7 @@ void Player::setName(string newName) {
 Player::Player() : health(20), manaNow(10) {
 }
 
-Card Player::playerChooseCard(Player& player, Player& opponent) {
+pair<Card, size_t> Player::playerChooseCard(Player& player, Player& opponent) {
     size_t index = 0;
 
 
@@ -68,20 +69,21 @@ Card Player::playerChooseCard(Player& player, Player& opponent) {
         else if (c == '\r') { // Enter key is pressed
             if (playerDeck[index].mana <= manaNow) {
                 // Return the chosen card if valid
-                return playerDeck[index];
+                return make_pair(playerDeck[index], index);
             }
             else {
                 cout << "Insufficient mana for the selected card. Choose another card." << endl;
+                system("pause");
             }
         }
     }
 }
 
 
-void Player::discardCard(Player& pl, Player& op, Card chosenCard) {
-    if (!playerDeck.empty()) {
-        Card discardedCard = playerDeck.back();
-        playerDeck.pop_back();
+void Player::discardCard(Player& pl, Player& op, size_t chosenIndex) {
+    if (chosenIndex < playerDeck.size()) {
+        Card chosenCard = playerDeck[chosenIndex];
+        playerDeck.erase(playerDeck.begin() + chosenIndex); // Remove the chosen card from the deck
         pl.manaNow -= chosenCard.mana;
         op.health -= chosenCard.hit;
         if (op.health < 0) {
@@ -91,7 +93,7 @@ void Player::discardCard(Player& pl, Player& op, Card chosenCard) {
             pl.manaNow += 3;
             if (pl.manaNow > 10) {
                 pl.manaNow = 10;
-           }
+            }
         }
     }
 }
@@ -147,13 +149,13 @@ void Player::addCardsFromDeck(Deck& mainDeck) {
     }
 }
 
-Card Player::opponentChooseCard() {
+pair<Card, size_t> Player::opponentChooseCard() {
     size_t index;
 
     while (true) {
         index = rand() % 6;
         if (manaNow >= playerDeck[index].mana) {
-            return playerDeck[index];
+            return  make_pair(playerDeck[index], index);
         }
     }
 
