@@ -29,12 +29,12 @@ void Card::display(bool selected) {
     cout << color; // reset to standard
     cout << setw(center) << " ";
     cout << "|\n";
-
+   
     // middle frame
     cout << "." << string(frameWidth - 3, '-') << ".\n";
 
     // cards
-    cout << "| Name: " << setw(frameWidth - 10) << left << name << "|\n";
+    cout << "| Name: " << BLUE << setw(frameWidth - 10) << left << name  << RESET << color << "|\n";
     cout << "| Mana: " << setw(frameWidth - 10) << left << mana << "|\n";
     cout << "| Hit: "  << setw(frameWidth - 9) << left << hit << "|\n";
 

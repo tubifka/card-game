@@ -30,15 +30,17 @@ void showInstructions() {
     cout << LightBLUE << "    | |   | | ||   ||    \/    \//         ||   ||   ||    ||---   ||       //      \\   ||\n";
     cout << LightBLUE << "    |_|   |_|  _____    -      -         -     _____     ||      ||===== //        \\  || \n" << RESET;
     cout << endl;
-    cout << YELLOW << "- Each player starts with a certain amount of health and a deck of cards.\n" << RESET;
-    cout << YELLOW << "- Each turn, players select a card using" << RED << " UP" << RESET << YELLOW << " or " << RESET << RED << "DOWN" << RESET << YELLOW << " on the keyboard.\n" << RESET;
-    cout << YELLOW << "- The chosen card affects the health of the opponent based on the card's power.\n" << RESET;
-    cout << YELLOW << "- After playing a card, the player draws new cards from the deck.\n" << RESET;
-    cout << YELLOW << "- The game continues until one player's health drops to zero, declaring the other player the winner.\n" << RESET;
+    cout << YELLOW << "-" << RESET<<" Each player starts with a certain amount of health and a deck of cards.\n";
+    cout << YELLOW << "-" << RESET<<" Each turn, players select a card using" << RED << " UP" << RESET << " or " << RED << "DOWN" << RESET << " on the keyboard.\n";
+    cout << YELLOW << "-" << RESET << " The chosen card affects the health of the opponent based on the card's power.\n";
+    cout << YELLOW << "-" << RESET<<" After playing a card, the player draws new cards from the deck.\n";
+    cout << YELLOW << "-" << RESET << " The game continues until one player's health drops to zero, declaring the other player the winner.\n" ;
 
-    cout << RED << "\nPress Enter to start game!" << endl << RESET;
+    cout << endl;
+    cout << "To start the game enter " << RED << "YOUR NAME " << RESET << "and press " << RED << "ENTER" << RESET << endl;
     cin.ignore(); // Ignore any previous input
     cin.get(); // Wait for the user to press Enter
+
 }
 
 bool winOp(Player& player) {
