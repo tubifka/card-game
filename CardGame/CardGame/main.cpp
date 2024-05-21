@@ -23,34 +23,34 @@ void printStart() {
 }
 
 void showInstructions() {
-    cout << LightBLUE << "     _     _   _____  .      .     .   ======= _____      . ___   _           --  \\       //\n";
+    cout << LightBLUE << "     _     _   _____  .            .   ======= _____      . ___   _           --  \\       //\n";
     cout << LightBLUE << "    | |   | | ||   || \\          //      ||   ||   ||    ||   || ||          //\\   \\     //\n";
     cout << LightBLUE << "    | | _ | | ||   ||  \\  //\\   //       ||   ||   ||    ||   || ||         //  \\   \\   //\n";
     cout << LightBLUE << "    |   -   | ||   ||   \\//  \\ //        ||   ||   ||    ||   || ||        //----\\    \||/\n";
     cout << LightBLUE << "    | |   | | ||   ||    \/    \//         ||   ||   ||    ||---   ||       //      \\   ||\n";
     cout << LightBLUE << "    |_|   |_|  _____    -      -         -     _____     ||      ||===== //        \\  || \n" << RESET;
     cout << endl;
-    cout << YELLOW << "-" << RESET<<" Each player starts with a certain amount of health and a deck of cards.\n";
-    cout << YELLOW << "-" << RESET<<" Each turn, players select a card using" << RED << " UP" << RESET << " or " << RED << "DOWN" << RESET << " on the keyboard.\n";
-    cout << YELLOW << "-" << RESET << " The chosen card affects the health of the opponent based on the card's power.\n";
-    cout << YELLOW << "-" << RESET<<" After playing a card, the player draws new cards from the deck.\n";
-    cout << YELLOW << "-" << RESET << " The game continues until one player's health drops to zero, declaring the other player the winner.\n" ;
+    cout << "-" << YELLOW << " Each player starts with a certain amount of health and a deck of cards.\n" << RESET;
+    cout << "-" << YELLOW << " Each turn, players select a card using" << RED << " UP" << RESET << YELLOW << " or " << RESET << RED << "DOWN + ENTER" << RESET << YELLOW <<" on the keyboard.\n" << RESET;;
+    cout << "-" << YELLOW << " The chosen card affects the health of the opponent based on the card's power.\n" << RESET;
+    cout << "-" << YELLOW << " After playing a card, the player draws new cards from the deck.\n" << RESET;
+    cout << "-" << YELLOW << " The game continues until one player's health drops to zero, declaring the other player the winner.\n" << RESET;;
 
     cout << endl;
-    cout << "To start the game enter " << RED << "YOUR NAME " << RESET << "and press " << RED << "ENTER" << RESET << endl;
-    cin.ignore(); // Ignore any previous input
-    cin.get(); // Wait for the user to press Enter
+    cout << RED << "Press Enter to start game!" << RESET << endl;
+    cin.ignore();
+    cin.get(); 
 
 }
 
 bool winOp(Player& player) {
     if (player.getHealth() <= 0) {
         player.setHealth(10);
-        cout << LightBLUE << " ___   . ___    . ___      ___  ._     _. .____  ._    _.   =====      .      .      .  ___   ._     _. ...\n";
+        cout << LightBLUE << " .___. . ___    . ___     .___. ._     _. .____  ._    _.   =====      .            .  .___.  ._    _. ...\n";
         cout << LightBLUE << "||  || ||   ||  ||   ||  ||  ||  ||\\   || ||     ||\\   ||    ||        \\          //  ||  ||  ||\\   || | |\n";
         cout << LightBLUE << "||  || ||   ||  ||   ||  ||  ||  ||  \\ || ||---  ||  \\ ||    ||         \\  //\\   //   ||  ||  ||  \\ || | |\n";
         cout << LightBLUE << "||  || ||---    ||---    ||  ||  ||    \|| ||---  ||    \||    ||          \\//  \\ //    ||  ||  ||    \|| |_|\n";
-        cout << LightBLUE << " ---   ||       ||        ---    ||    || ||___  ||    ||    -           -      -       ---   ||    || .\n" << RESET;
+        cout << LightBLUE << " ---   ||       ||        ---    ||    || ||___  ||    ||    -           -      -      ---    ||    ||  .\n" << RESET;
         return true;
     }
     else {
@@ -61,11 +61,11 @@ bool winOp(Player& player) {
 bool winPl(Player& opponent) {
     if (opponent.getHealth() <= 0) {
         opponent.setHealth(10);
-        cout << LightBLUE << " . ---   --        --     \\      //  .____  .___.         .      .      .  ___   ._     _. ...\n";
-        cout << LightBLUE << " ||   || ||      //  \\    \\    //   ||     ||   ||        \\          //  ||  ||  ||\\   || | |\n";
-        cout << LightBLUE << " ||   || ||     //    \\     \||/     ||---  ||____||         \\  //\\   //   ||  ||  ||  \\ || | |\n";
-        cout << LightBLUE << " ||---   ||    //------\\     ||      ||---  ||\\             \\//  \\ //    ||  ||  ||    \|| |_|\n";
-        cout << LightBLUE << " ||      ||___//        \\    ||      ||___  ||  \\            -      -       ---   ||    || .\n" << RESET;
+        cout << LightBLUE << " . ---   --        --     \\     //   .____  .___.         .            .  .___.  ._    _. ...\n";
+        cout << LightBLUE << " ||   || ||      //  \\     \\   //   ||     ||   ||        \\          //  ||  ||  ||\\   || | |\n";
+        cout << LightBLUE << " ||   || ||     //    \\      \||/    ||---  ||____||        \\  //\\   //   ||  ||  ||  \\ || | |\n";
+        cout << LightBLUE << " ||---   ||    //------\\     ||     ||---  ||\\              \\//  \\ //    ||  ||  ||    \|| |_|\n";
+        cout << LightBLUE << " ||      ||___//        \\    ||     ||___  ||  \\            -      -      ---    ||    ||  .\n" << RESET;
         return true;
     }
     else {
