@@ -73,7 +73,7 @@ pair<Card, size_t> Player::playerChooseCard(Player& player, Player& opponent) {
             }
             else {
                 cout << "Insufficient mana for the selected card. Choose another card." << endl;
-                system("pause");
+                cin.ignore();
             }
         }
     }
