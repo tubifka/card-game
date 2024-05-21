@@ -16,17 +16,22 @@ const string RED = "\033[31m";
 const string LightBLUE = "\033[96m";
 const string RESET = "\033[0m";
 const string YELLOW = "\033[33m";
+const string GREEN = "\033[32m";
 
 void printStart() {
     cout << LightBLUE << "._____      =       .___.   .____.    ._____      =     ._      _. .____\n";
-    cout << LightBLUE << "||        // \\    ||   ||  ||   ||   ||         // \\    ||      || || \n";
-    cout << LightBLUE << "||       //   \\   ||___||  ||   ||   ||        //   \\   ||  \\// || ||---\n";
-    cout << LightBLUE << "||      // === \\  ||\\      ||   ||   || ===   // === \\  ||      || ||---\n";
-    cout << LightBLUE << "||____ //       \\ ||  \\    ||___||   ||___|| //       \\ ||      || ||___\n" << RESET;
+    cout << LightBLUE << "||        // \\    ||   ||  ||   \\     ||         // \\    ||      || || \n";
+    cout << LightBLUE << "||       //   \\   ||___||  ||    ||   ||        //   \\   ||  \\// || ||---\n";
+    cout << LightBLUE << "||      // === \\  ||\\      ||    ||   || ===   // === \\  ||      || ||---\n";
+    cout << LightBLUE << "||____ //       \\ ||  \\    ||___//    ||___|| //       \\ ||      || ||___\n" << RESET;
     cout << endl;
 }
 
 void showInstructions() {
+    cout << endl;
+    cout << "LETS START!" << endl;
+    cout << endl;
+    cout << "* before playing read the rules * " << endl;
     cout << LightBLUE << "     _     _   _____  .            .   ======= _____      . ___   _           --  \\       //\n";
     cout << LightBLUE << "    | |   | | ||   || \\          //      ||   ||   ||    ||   || ||          //\\   \\     //\n";
     cout << LightBLUE << "    | | _ | | ||   ||  \\  //\\   //       ||   ||   ||    ||   || ||         //  \\   \\   //\n";
@@ -119,10 +124,14 @@ bool chooseMenu() {
     while (true) {
         system("CLS"); // Clear the screen
         printStart();
-
+        
+        cout << YELLOW << "~~~ Welcome to the CARD GAME ~~~" << RESET << endl;
+        cout << endl;
+        cout << "What do you want to do?" << endl;
+        cout << endl;
         // Display menu options
-        cout << (index == 0 ? RED : RESET) << "1. Start Game" << RESET << setw(10);
-        cout << (index == 1 ? RED : RESET) << "2. Exit" << RESET << endl;
+        cout << (index == 0 ? GREEN : RESET) << "START" << RESET << setw(10);
+        cout << (index == 1 ? RED : RESET) << "QUIT" << RESET << endl;
 
         // Get user input
         int c = _getch(); // Using _getch() to get arrow keys
@@ -140,7 +149,17 @@ bool chooseMenu() {
             }
         }
         else if (c == '\r') { // Enter key is pressed
-            return (index == 0); // Return true if "Start Game" is selected, false if "Exit" is selected
+        // Return true if "Start Game" is selected, false if "Exit" is selected
+            if (index==0)
+            {
+                return (index == 0);
+            }
+            else
+            {
+                cout << endl;
+                cout <<RED<< "BYE!"<<RESET << endl;
+                system("pause");
+            }
         }
     }
 }
