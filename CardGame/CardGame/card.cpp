@@ -4,6 +4,7 @@
 
 using namespace std;
 
+
 // ANSI-codes for colors
 const string RED = "\033[31m";
 const string GREEN = "\033[32m";
@@ -36,8 +37,8 @@ void Card::display(bool selected) {
 
     // cards
     cout << "|" << YELLOW << " Name: " << RESET << BLUE << setw(frameWidth - 10) << left << name  << RESET << color << "|\n";
-    cout << "|" << GREEN << " Mana: " << RESET << setw(frameWidth - 10) << left << mana << "|\n";
-    cout << "|" << RED << " Hit: " << RESET << setw(frameWidth - 9) << left << hit << "|\n";
+    cout << "|" << GREEN << " Mana: " << color << RESET << setw(frameWidth - 10) << left << mana << color << "|\n";
+    cout << "|" << RED << " Hit: " << color << RESET << setw(frameWidth - 9) << left << hit << color << "|\n";
 
     // lower frame
     cout << "." << string(frameWidth - 3, '-') << ".\n";

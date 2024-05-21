@@ -4,8 +4,13 @@
 #include "player.h" // Include the Player class
 #include "main.h"
 #include "deck.h"
+#include <conio.h>
+#include <iomanip>
 
 using namespace std;
+
+#define KEY_RIGHT 77
+#define KEY_LEFT 75
 
 const string RED = "\033[31m";
 const string LightBLUE = "\033[96m";
@@ -37,7 +42,6 @@ void showInstructions() {
 
     cout << endl;
     cout << RED << "Press Enter to start game!" << RESET << endl;
-    cin.ignore();
     cin.get(); 
 
 }
@@ -110,6 +114,37 @@ void game(Player& player, Player& opponent, Deck& deck) {
     }
 }
 
+bool chooseMenu() {
+    int index = 0; // Initialize the index to 0
+    while (true) {
+        system("CLS"); // Clear the screen
+        printStart();
+
+        // Display menu options
+        cout << (index == 0 ? RED : RESET) << "1. Start Game" << RESET << setw(10);
+        cout << (index == 1 ? RED : RESET) << "2. Exit" << RESET << endl;
+
+        // Get user input
+        int c = _getch(); // Using _getch() to get arrow keys
+
+        if (c == 224) { // Arrow keys are returned as two codes, first is 224
+            c = _getch(); // Get the actual key code
+
+            switch (c) {
+            case KEY_LEFT:
+                index = (index == 0) ? 1 : 0; // Toggle between 0 and 1
+                break;
+            case KEY_RIGHT:
+                index = (index == 1) ? 0 : 1; // Toggle between 0 and 1
+                break;
+            }
+        }
+        else if (c == '\r') { // Enter key is pressed
+            return (index == 0); // Return true if "Start Game" is selected, false if "Exit" is selected
+        }
+    }
+}
+
 int main() {
     Player player;
     Player opponent;
@@ -119,6 +154,9 @@ int main() {
     player.addCardsFromDeck(deck);
     opponent.addCardsFromDeck(deck);
 
+    if (chooseMenu() == false) {
+        return 0;
+    }
     showInstructions();
     printStart();
     cout << "Enter your name: ";
