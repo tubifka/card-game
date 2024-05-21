@@ -9,6 +9,7 @@ const string RED = "\033[31m";
 const string GREEN = "\033[32m";
 const string BLUE = "\033[34m";
 const string PURPLE = "\033[95m";
+const string YELLOW = "\033[33m";
 const string RESET = "\033[0m"; // reset standart color
 
 Card::Card(const string& n, int m, int h) : name(n), mana(m), hit(h) {}
@@ -34,9 +35,9 @@ void Card::display(bool selected) {
     cout << "." << string(frameWidth - 3, '-') << ".\n";
 
     // cards
-    cout << "| Name: " << BLUE << setw(frameWidth - 10) << left << name  << RESET << color << "|\n";
-    cout << "| Mana: " << setw(frameWidth - 10) << left << mana << "|\n";
-    cout << "| Hit: "  << setw(frameWidth - 9) << left << hit << "|\n";
+    cout << "|" << YELLOW << " Name: " << RESET << BLUE << setw(frameWidth - 10) << left << name  << RESET << color << "|\n";
+    cout << "|" << GREEN << " Mana: " << RESET << setw(frameWidth - 10) << left << mana << "|\n";
+    cout << "|" << RED << " Hit: " << RESET << setw(frameWidth - 9) << left << hit << "|\n";
 
     // lower frame
     cout << "." << string(frameWidth - 3, '-') << ".\n";

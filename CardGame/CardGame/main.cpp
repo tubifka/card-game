@@ -10,7 +10,6 @@ using namespace std;
 const string RED = "\033[31m";
 const string LightBLUE = "\033[96m";
 const string RESET = "\033[0m";
-const string BOLD = "\033[1m";
 const string YELLOW = "\033[33m";
 
 void printStart() {
